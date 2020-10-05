@@ -14,7 +14,6 @@ def rotate(img,x, y, width):
     width = width //2    
     count += 1     
     if count % 100 == 0:        
-        global out
         cv2.imshow('img',img)
         cv2.waitKey(1)
     
