@@ -14,7 +14,9 @@ def rotate(img,x, y, width):
     width = width //2    
     count += 1     
     if count % 100 == 0:        
+        global out
         cv2.imshow('img',img)
+        out.write(img)
         cv2.waitKey(1)
     
     if width == 0:
@@ -34,12 +36,16 @@ file_name = "test_img.jpg"
 img = cv2.imread(file_name)
 img_dim = img.shape[0]
 
+out_file_name = r"C:\Users\CMG\Desktop\Output_video.mp4"
+out = cv2.VideoWriter(out_file_name, cv2.VideoWriter_fourcc('m','p','4','v'), 25, (img_dim, img_dim))
+
 #Rotating 4 times
 for rotations in range(1):
     width = img_dim // 2
     x,y = 0,0    
     img = rotate(img, x, y, width)
 
+out.release()
 cv2.imshow('Final',img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
